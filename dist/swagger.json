@@ -1,0 +1,377 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Typescript Auth API",
+        "description": "Typescript Authentication API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:9000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "User",
+            "description": "API for authentication "
+        }
+    ],
+    "schemes": ["http", "https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a new user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/user/signin": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Login a user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter user credentials",
+                        "schema": {
+                            "$ref": "#/definitions/Signin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/user/send-verification-mail": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Send verification mail",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Sending verification mail",
+                        "schema": {
+                            "$ref": "#/definitions/SendVerificationMail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/user/verify-user-mail": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Verify user mail",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mail for those user to verify",
+                        "schema": {
+                            "$ref": "#/definitions/VerifyMailUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/user/forgot-password": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Forgot password mail",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Mail for forgot password",
+                        "schema": {
+                            "$ref": "#/definitions/ForgotPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/user/verify-forgot-mail": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Verify forgot mail",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Enter token and new password",
+                        "schema": {
+                            "$ref": "#/definitions/VerifyForgotMail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/employee/get-employees": {
+            "get": {
+                "tags": ["Employee"],
+                "summary": "Get all employees data",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/employee/get-employee/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of the employee that we want to",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": ["Employee"],
+                "summary": "Get employee data",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/employee/create-employee": {
+            "post": {
+                "tags": ["Employee"],
+                "summary": "Create new employee",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Employee that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Employee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/employee/update-employee/{id}": {
+            "put": {
+                "tags": ["Employee"],
+                "summary": "Update employee data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id of the employee that we want to",
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Update employee data",
+                        "schema": {
+                            "$ref": "#/definitions/Employee"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        },
+        "/employee/delete-employee/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Id of the employee that we want to",
+                    "type": "string"
+                }
+            ],
+            "delete": {
+                "tags": ["Employee"],
+                "summary": "Delete a employee",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad user data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Employee": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "string"
+                },
+                "office": {
+                    "type": "string"
+                },
+                "salary": {
+                    "type": "string"
+                }
+            }
+        },
+        "Signin": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "SendVerificationMail": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "VerifyMailUser": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "ForgotPassword": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "VerifyForgotMail": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Users": {
+            "type": "object",
+            "properties": {
+                "users": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#definitions/User"
+                    }
+                }
+            }
+        }
+    }
+}

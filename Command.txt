@@ -1,0 +1,25 @@
+Seeders command
+npx sequelize-cli seed:generate --name  user-add
+//seed all
+npx sequelize-cli db:seed:all
+//seed selected one
+npx sequelize-cli db:seed:20220201051639-user-add.js
+//undo(delete) all table data
+npx sequelize-cli db:seed:undo:all
+//undo(delete) selected table data
+npx sequelize-cli db:seed:undo:20220201051639-user-add.js
+
+
+Migration Command
+//create model
+npx sequelize-cli model:generate --name Users --attributes name:string
+//migrate(create table in database) model
+npx sequelize-cli db:migrate
+//undo(delete) table last created
+npx sequelize db:migrate:undo
+//undo(delete) table all created
+npx sequelize db:migrate:undo:all
+//undo(delete) table selected
+npx sequelize-cli db:migrate:undo --name 20220201055628-create-users.js
+//check status of table created and deleted
+npx sequelize-cli db:migrate:status
